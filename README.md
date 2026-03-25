@@ -26,4 +26,5 @@
 ## הוראות הפעלה
 ### הרצת שרת פיתוח
 ```bash
+npm install
 ng serve
