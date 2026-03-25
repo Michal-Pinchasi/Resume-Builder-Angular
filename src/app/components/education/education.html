@@ -1,0 +1,62 @@
+<div class="card" [formGroup]="educationForm">
+  <h3>השכלה וניסיון אקדמי</h3>
+
+  <div formArrayName="educations">
+    <div *ngFor="let edu of educations.controls; let i = index" [formGroupName]="i" class="education-item">
+      <h4>מוסד לימודים #{{i + 1}}</h4>
+      
+      <input type="text" formControlName="institution" placeholder="שם המוסד">
+      <input type="text" formControlName="degree" placeholder="תואר / תעודה">
+      <input type="text" formControlName="field" placeholder="תחום לימוד">
+      
+     <div class="row">
+  <input type="date" formControlName="startDate" placeholder="תאריך התחלה">
+  <input *ngIf="edu.get('status')?.value !== 'במהלך'" 
+         type="date" formControlName="endDate" placeholder="תאריך סיום">
+</div>
+
+<span *ngIf="edu.errors?.['invalidDate'] && edu.get('endDate')?.touched" class="error-message">
+  תאריך הסיום חייב להיות מאוחר מתאריך ההתחלה
+</span>
+
+      <select formControlName="status">
+        <option value="סיימתי">סיימתי</option>
+        <option value="במהלך">במהלך (לומדת כרגע)</option>
+        <option value="לא סיימתי">לא סיימתי</option>
+      </select>
+
+<div class="field">
+  <label>ממוצע ציונים:</label>
+  <input 
+    type="number" 
+    formControlName="grade" 
+    placeholder="0-100">
+  
+  <div *ngIf="edu.get('grade')?.invalid && edu.get('grade')?.touched" class="error-message">
+    <span *ngIf="edu.get('grade')?.errors?.['required']">חובה להזין ציון</span>
+    <span *ngIf="edu.get('grade')?.errors?.['min'] || edu.get('grade')?.errors?.['max']">
+      הציון חייב להיות בין 0 ל-100
+    </span>
+  </div>
+</div>
+      <div class="courses-section">
+        <h5>קורסים רלוונטיים: (לפחות אחד חובה)</h5>
+        <div formArrayName="courses">
+          <div *ngFor="let course of getCourses(i).controls; let j = index" class="course-row">
+              <input [formControlName]="j" placeholder="שם הקורס">
+              <button type="button" (click)="removeCourse(i, j)" 
+                      *ngIf="getCourses(i).length > 1">✖</button>
+          </div>
+        </div>
+        <button type="button" (click)="addCourse(i)">+ הוסף קורס</button>
+      </div>
+
+      <button type="button" class="btn-remove" (click)="removeEducation(i)" 
+              *ngIf="educations.length > 1">מחק את כל מוסד הלימודים</button>
+      <hr>
+    </div>
+  </div>
+  
+
+  <button type="button" class="btn-add" (click)="addEducation()">+ הוסף מוסד לימודים נוסף</button>
+</div>

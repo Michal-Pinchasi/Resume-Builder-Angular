@@ -1,0 +1,40 @@
+<div class="preview-container">
+  <h2>תצוגה מקדימה של קורות החיים</h2>
+  
+  <div class="cv-paper">
+    <div class="header">
+      <h1>{{ data?.personal?.fullName || 'השם שלכם יופיע כאן' }}</h1>
+      <p>
+        {{ data?.personal?.email || 'אימייל' }} | 
+        {{ data?.personal?.phone || 'טלפון' }}
+      </p>
+    </div>
+
+    <hr>
+
+    <div class="section" *ngIf="data?.personal?.description">
+      <h3>תמצית מקצועית</h3>
+      <p>{{ data?.personal?.description }}</p>
+    </div>
+
+    <div class="section" *ngIf="data?.education?.length > 0">
+      <h3>השכלה</h3>
+      <div *ngFor="let edu of data.education" class="preview-item">
+        <strong>{{ edu.institution || 'שם המוסד' }}</strong> - {{ edu.degree }}
+        <p>
+          {{ edu.startDate }} עד {{ edu.endDate || 'היום' }} | 
+          ציון: {{ edu.grade }}
+        </p>
+        
+        <div class="preview-courses" *ngIf="edu.courses?.length > 0">
+           <strong>קורסים: </strong>
+           <span *ngFor="let course of edu.courses; let last = last">
+             {{ course }}{{ !last ? ', ' : '' }}
+           </span>
+        </div>
+        <hr class="mini-hr">
+      </div>
+    </div>
+
+  </div>
+</div>

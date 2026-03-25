@@ -1,0 +1,58 @@
+<div class="card">
+  <h3>פרטים אישיים</h3>
+  <form #personalForm="ngForm">
+    
+    <div class="field">
+      <label>שם מלא:</label>
+      <input 
+        type="text" 
+        name="fullName" 
+        [(ngModel)]="personalInfo.fullName" 
+        (input)="onInputChange()" 
+        required 
+        placeholder="ישראל ישראלי">
+    </div>
+
+    <div class="field">
+  <label>אימייל:</label>
+  <input 
+    type="email" 
+    name="email" 
+    [(ngModel)]="personalInfo.email" 
+    (input)="onInputChange()" 
+    required 
+    #emailModel="ngModel"
+    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+    placeholder="example@email.com">
+  
+  <div *ngIf="emailModel.invalid && (emailModel.dirty || emailModel.touched)" class="error-message">
+    <span *ngIf="emailModel.errors?.['required']" style="color: red; font-size: 12px;">שדה חובה</span>
+    <span *ngIf="emailModel.errors?.['pattern']" style="color: red; font-size: 12px;">כתובת אימייל לא תקינה</span>
+  </div>
+</div>
+
+    <div class="field">
+      <label>טלפון:</label>
+      <input 
+        type="text" 
+        name="phone" 
+        [(ngModel)]="personalInfo.phone" 
+        (input)="onInputChange()" 
+        (keypress)="onlyNumbers($event)" 
+        required 
+        placeholder="0501234567">
+    </div>
+
+    <div class="field">
+      <label>תיאור קצר עליך:</label>
+      <textarea 
+        name="description" 
+        [(ngModel)]="personalInfo.description" 
+        (input)="onInputChange()" 
+        required 
+        placeholder="ספר קצת על הניסיון שלך...">
+      </textarea>
+    </div>
+
+  </form>
+</div>
