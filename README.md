@@ -1,59 +1,37 @@
-# CvBuilder
+# Smart CV Builder - Angular Reactive System
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.0.
+מערכת דינמית ומתקדמת ליצירת קורות חיים מקצועיים, המבוססת על ארכיטקטורת רכיבים (Components) וניהול טפסים ריאקטיבי מורכב.
 
-## Development server
+## 📄 אודות הפרויקט
+הפרויקט נבנה כפתרון Web מודרני המאפשר למשתמשים ליצור קורות חיים בצורה אינטראקטיבית. המערכת שמה דגש על חווית משתמש (UX) חלקה באמצעות עדכון נתונים בזמן אמת (Real-time Preview) ואכיפת לוגיקה עסקית וולידציות מחמירות על נתוני הקלט, כדי להבטיח תוצר סופי תקני ומקצועי.
 
-To start a local development server, run:
+## 🛠 טכנולוגיות וארכיטקטורה
+- **Framework:** Angular 17+ (שימוש ב-Standalone Components).
+- **Form Management:** שימוש נרחב ב-`Reactive Forms` וב-`FormBuilder` לניהול מבני נתונים היררכיים.
+- **Dynamic Collections:** ניהול רשימות דינמיות באמצעות `FormArray` המאפשר הוספה והסרה של ישויות בזמן ריצה.
+- **Data Binding:** סנכרון דו-כיווני בין הטופס לתצוגה המקדימה באמצעות Component Communication.
+- **Environment:** פותח ב-VS Code בסביבת Node.js.
 
-```bash
-ng serve
-```
+## ✨ פיצ'רים מרכזיים
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### 👤 ניהול פרטים אישיים (Personal Details)
+- מערכת קליטת נתונים הכוללת שם, אימייל, טלפון ותיאור מקצועי.
+- **ולידציות מובנות:** בדיקת פורמט אימייל תקין (Regex) וחסימת תווים שאינם ספרות בשדה הטלפון בזמן אמת.
+- חיווי ויזואלי מיידי (CSS Validation States) על שדות חובה שלא מולאו.
 
-## Code scaffolding
+### 🎓 ניהול השכלה אקדמית (Education Management)
+- **מבנה היררכי:** אפשרות להוספת מספר מוסדות לימוד, כאשר כל מוסד מכיל רשימה פנימית משלו של קורסים רלוונטיים.
+- **לוגיקה מותנית (Conditional UI):** כאשר המשתמש בוחר בסטטוס "לומדת כרגע", שדה תאריך הסיום הופך ללא רלוונטי, מוסתר מהתצוגה וחובת הולידציה עליו מוסרת אוטומטית.
+- **בדיקת טווחים:** ולידציה על ממוצע ציונים (Grade) בטווח שבין 0 ל-100.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### 📅 בקרת תאריכים (Date Validation)
+- **Custom Validator:** פיתוח ולידטור מותאם אישית המוודא כי תאריך הסיום אינו קודם לתאריך ההתחלה.
+- מניעת הזנת נתונים לא הגיוניים כרונולוגית בתוך היסטוריית ההשכלה.
 
-```bash
-ng generate component component-name
-```
+### 👁 תצוגה מקדימה דינמית (Real-time Preview)
+- רכיב `CV-Preview` נפרד המאזין לשינויים בטופס ומציג את התוצאה הסופית כפי שתיראה בקורות החיים המודפסים.
+- עיצוב נקי ומקצועי המפריד בין שלב הזנת הנתונים לשלב התצוגה.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 🏗 מבנה המודלים והנתונים (Core Logic)
+- `PersonalDetails`: אובייקט המנהל את פרטי הקשר והפרופיל האישי.
+- `EducationItem
